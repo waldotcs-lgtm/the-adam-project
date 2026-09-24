@@ -4,23 +4,43 @@ on:
     branches: [main]
   workflow_dispatch:
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 concurrency:
   group: pages
   cancel-in-progress: true
 jobs:
-  deploy:
+  restore-and-deploy:
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Restore hotspots.json from compressed payload
+        run: |
+          python3 - <<'PY'
+          import base64, gzip, json, pathlib
+          b64 = pathlib.Path("data/hotspots.json.b64gz").read_text().strip()
+          data = gzip.decompress(base64.b64decode(b64))
+          pathlib.Path("data/hotspots.json").write_bytes(data)
+          d = json.loads(data)
+          assert d["count"] == 150 and len(d["hotspots"]) == 150, d.get("count")
+          print("restored", d["count"], "hotspots")
+          PY
+      - name: Commit restored hotspots.json if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/hotspots.json
+          if git diff --cached --quiet; then
+            echo "hotspots.json already up to date"
+          else
+            git commit -m "Restore full 150 hotspots for The Adam Project"
+            git push
+          fi
       - uses: actions/configure-pages@v5
-        with:
-          enablement: true
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
