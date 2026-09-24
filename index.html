@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>The Adam Project — Adams Synchronological Chart of History</title>
+  <meta name="description" content="The Adam Project: interactive viewer for Sebastian C. Adams’ Synchronological Chart of History (3rd ed. 1878). Personal / free non-commercial use." />
+  <link rel="stylesheet" href="css/app.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="brand">
+        <h1><span class="title-full">The Adam Project</span><span class="title-short">Adam Project</span></h1>
+        <p class="subtitle">Adams Synchronological Chart of History, 3rd ed. 1878</p>
+      </div>
+      <div class="year-controls">
+        <label class="sr-only" for="year-input">Jump to year</label>
+        <input id="year-input" type="text" placeholder="33 / 1000 BC" autocomplete="off" inputmode="text" />
+        <button type="button" id="year-go" class="btn">Go</button>
+        <input id="year-slider" type="range" min="-4004" max="1881" value="-4004" aria-label="Year slider" />
+        <span id="year-display" class="year-display">4004 BC</span>
+      </div>
+      <div class="toolbar" role="toolbar" aria-label="Tools">
+        <button type="button" id="btn-search" class="btn ghost" title="Search" aria-label="Search">⌕</button>
+        <button type="button" id="btn-tour" class="btn ghost" title="Tour" aria-label="Tour">Tour</button>
+        <button type="button" id="btn-moment" class="btn ghost" title="At this moment" aria-label="At this moment">Now</button>
+        <button type="button" id="btn-panels" class="btn ghost" title="End panels" aria-label="End panels">Panels</button>
+        <button type="button" id="btn-about" class="btn ghost" title="About" aria-label="About">ⓘ</button>
+        <button type="button" id="btn-menu" class="btn ghost menu-only" title="Menu" aria-label="Menu" aria-expanded="false">☰</button>
+      </div>
+      <div id="menu-dropdown" class="menu-dropdown" hidden>
+        <button type="button" data-menu="search">Search</button>
+        <button type="button" data-menu="tour">Tour</button>
+        <button type="button" data-menu="moment">At this moment</button>
+        <button type="button" data-menu="panels">End panels</button>
+        <button type="button" data-menu="about">About</button>
+      </div>
+    </header>
+
+    <div id="ruler" class="ruler" aria-hidden="true">
+      <div class="ruler-inner">
+        <span id="ruler-left"></span>
+        <span id="ruler-center"></span>
+        <span id="ruler-right"></span>
+      </div>
+    </div>
+
+    <main id="viewer-wrap">
+      <div id="osd" class="osd"></div>
+      <div id="hotspot-layer" class="hotspot-layer"></div>
+      <div id="stream-highlight" class="stream-highlight" hidden></div>
+    </main>
+
+    <aside id="side-panel" class="side-panel" hidden>
+      <button type="button" class="panel-close" id="panel-close" aria-label="Close">×</button>
+      <div id="panel-body"></div>
+    </aside>
+
+    <div id="bottom-sheet" class="bottom-sheet" hidden>
+      <div class="sheet-handle"></div>
+      <button type="button" class="panel-close" id="sheet-close" aria-label="Close">×</button>
+      <div id="sheet-body"></div>
+    </div>
+
+    <footer class="credit">
+      Image: David Rumsey Map Collection, David Rumsey Map Center, Stanford Libraries (CC BY-NC-SA 3.0).
+      Personal / free non-commercial use. Chart by Sebastian C. Adams.
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/openseadragon@4.1.0/build/openseadragon/openseadragon.min.js"></script>
+  <script src="js/calibration.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
