@@ -24,7 +24,7 @@
       "Nation/empire streams are parallel horizontal colored bands that widen, thin, split, and merge.",
       "BC centuries labeled with 2-digit marks (39 = 3900 BC) counting down left to right.",
       "AD centuries labeled after the birth of Christ.",
-      "Scale is roughly 12.5\u201313 px/year but not perfectly uniform; use piecewise-linear anchors every century.",
+      "Scale is roughly 12.5–13 px/year but not perfectly uniform; use piecewise-linear anchors every century.",
       "A wider gap near Flood/Babel required inserting one interpolated century pillar.",
       "Far-right portrait and index panels sit after the linear stream ends (~1881) and are outside the year axis.",
       "Intro maps and artifact illustrations occupy the far left near Creation."
@@ -94,7 +94,7 @@
   ],
   "method": {
     "summary": "Detected dark century pillars on IIIF axis strips; verified with OCR/visual crops at 3700 BC, 100 BC, AD 1 (Jesus region), AD 1800, AD 1881; inserted one missing pillar in the Flood/Babel gap; trimmed false end detections; piecewise-linear interpolation.",
-    "accuracy": "Century anchors typically within ~30\u201380 px (~3\u20137 years). Jump-to-year for mid-century points may be off by up to ~10\u201315 years where scale wobbles. Uncertain: exact Flood year x (chart texts cite 2348/2347 and Babel 2247); exact boundary where linear streams meet right-hand panels.",
+    "accuracy": "Century anchors typically within ~30–80 px (~3–7 years). Jump-to-year for mid-century points may be off by up to ~10–15 years where scale wobbles. Uncertain: exact Flood year x (chart texts cite 2348/2347 and Babel 2247); exact boundary where linear streams meet right-hand panels.",
     "cors": "Rumsey IIIF returns Access-Control-Allow-Origin: * with Origin header; OpenSeadragon can stream tiles directly."
   }
 }
