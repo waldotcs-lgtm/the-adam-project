@@ -37,10 +37,11 @@
 
     function formatYear(y) {
       if (y < 0) return Math.abs(y) + ' BC';
-      if (y === 0) return 'AD 1';
+      if (y === 0) return 'AD 1'; // chart has no year 0
       return 'AD ' + y;
     }
 
+    /** Parse "1000 BC", "-1000", "1776", "AD 33", "33 AD" */
     function parseYear(text) {
       if (text == null) return null;
       const s = String(text).trim().toUpperCase().replace(/,/g, '').replace(/\./g, '');
